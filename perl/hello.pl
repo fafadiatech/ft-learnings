@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+#Code in here is based mostly on tutorials: http://www.tutorialspoint.com/perl/
+
 #When using strict, you will absolutely need to write "my" before any var
 use 5.014;
 #use strict;
