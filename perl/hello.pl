@@ -56,3 +56,25 @@ my %fav_colors = ("Sidharth", "Red", "Manan", "White");
 foreach my $person (keys %fav_colors){
     print $person, " likes ", $fav_colors{$person}, " color very much\n";
 }
+
+#This is how you check if a key exists in hash
+if (exists($fav_colors{"Dilip"})){
+    print "Exists\n";
+}else{
+    print "Doesn't exits\n";
+}
+
+#This is how you read file contents
+#The < prefix before name of file suggest we're opening it for reading
+open(DATA, "<sample.txt") or die "Couldn't open sample file";
+while(<DATA>){
+    #Note: $_ is a scalar, which signifies default value
+    print $_;
+};
+close(DATA);
+
+#This is how you write to file
+open(DATA, ">new_sample.txt") or die "Couldn't open sample file to write";
+my $magic = 10;
+print DATA $magic;
+close(DATA);
