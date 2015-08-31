@@ -73,3 +73,10 @@ phonecatApp.controller('PhoneListCtrl', function ($scope) {
 9. filter function can be used with data binding, note how the ng-model directive is used and chained with ng-repeat
 10. [Protractor](https://github.com/angular/protractor) is a tool that is used to perform E2E tests for Angular. It complements Jasmine
 11. Continue from [here](https://docs.angularjs.org/tutorial/step_04)
+
+
+[Single page applications, Angular.js and accessibility](http://simplyaccessible.com/article/spangular-accessibility/)
+========================================================
+
+[W3School: AngularJS Tutorial](http://www.w3schools.com/angular/default.asp)
+==============================
