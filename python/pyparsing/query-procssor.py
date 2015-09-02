@@ -1,3 +1,6 @@
+#Some good references:
+#1. http://infohost.nmt.edu/tcc/help/pubs/pyparsing/pyparsing.pdf
+#2. http://q3k.org/gentoomen/Programming/Python/Getting%20Started%20with%20Pyparsing%20(2007).pdf
 from pyparsing import Word, alphas, oneOf
 
 color = oneOf("red blue")
