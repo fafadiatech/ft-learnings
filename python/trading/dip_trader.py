@@ -27,20 +27,21 @@ def lots_to_buy(current_level, buying_levels):
     Given current level and buying_levels figure out how many lots to buy
     """
     lots_to_buy = 0
-
+    buying_levels_processed = []
     if len(buying_levels) == 0:
         return 0
 
     potential_level = buying_levels[-1]
     while potential_level > current_level:
-        buying_levels.pop()
+        current_buying_level = buying_levels.pop()
+        buying_levels_processed.append(current_buying_level)
         if len(buying_levels) == 0:
             break
         
         potential_level = buying_levels[-1]
         lots_to_buy += 1
 
-    return lots_to_buy
+    return lots_to_buy, buying_levels_processed
 
 def dip_trader(feed, start_range, end_range, dip_points=50):
     """
@@ -49,6 +50,7 @@ def dip_trader(feed, start_range, end_range, dip_points=50):
     buying_levels = []
     selling_levels = []
     lot_counts = {}
+    price_to_lots_mappings = {}
 
     #Generate initial buying level
     current_range = start_range
@@ -77,11 +79,14 @@ def dip_trader(feed, start_range, end_range, dip_points=50):
             print "\t".join(map(str, buying_levels))
 
         #Check if we need to buy, if so how much?
-        total_lots_to_buy = lots_to_buy(current_level, buying_levels)
+        total_lots_to_buy, lots_processed = lots_to_buy(current_level, buying_levels)
         if total_lots_to_buy > 0:
             print "%s %s:Buy %d Lot(s) @ %.2f" % (dt, ts, total_lots_to_buy, current_level)
             selling_levels.append(current_level)
             lot_counts[str(current_level)] = total_lots_to_buy
+            
+            #Keep track of buying levels at which we bough certain item in a given point in time
+            price_to_lots_mappings[str(current_level)] = lots_processed
             current_tick = feed.pop()
             continue
 
@@ -97,7 +102,16 @@ def dip_trader(feed, start_range, end_range, dip_points=50):
                 print "%s %s:Sell %d Lots(s) @ %.2f Bought @ %.2f" % (dt, ts, lot_counts[str(selling_item)], current_level, selling_item)
                 profit += (lot_counts[str(selling_item)] * (current_level - selling_item + dip_points))
                 selling_levels.remove(selling_item)
+                
+                #After selling a certain item, mark its levels as empty
+                for empty_buying_level in price_to_lots_mappings[str(selling_item)]:
+                    buying_levels.append(empty_buying_level)
+                
+                buying_levels.sort()
+
                 del lot_counts[str(selling_item)]
+                del price_to_lots_mappings[str(selling_item)]
+
                 if SELL_DEBUG:
                     print lot_counts
 
