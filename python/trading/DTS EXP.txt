@@ -1,0 +1,110 @@
+PROJECT DTS
+
+DATE:20150901-----20150924
+
+NIFTY DTS
+
+Range:8056.75-7562.10
+
+Dip Points:50(It Can Be Adjusted Manually)
+
+So,Buying Levels:
+
+-8056.75
+-8006.75
+-7956.75
+-7906.75
+-7856.75
+-7806.75
+-7756.75
+-7706.75
+-7656.75
+-7606.75
+-7556.75
+
+()Choose the close column for making entry,exit and range.
+()Choose the highest price in range for making buying levels.
+
+
+EXAMPLE:
+
+(*)Data:20150901-----20150924
+
+(*)Range:8056.75-----7556.75
+
+(*)Dip Points:50
+
+(*)Buy 1 Lot On Every 50 Points Dip.
+
+(*)Buying Levels:
+---8056.75
+---8006.75
+---7956.75
+
+---7906.75
+---7856.75
+---7806.75
+---7756.75
+---7706.75
+---7656.75
+---7606.75
+---7556.75
+
+
+DTS FOR 20150901:
+
+(*)9:16:7920.70
+---Action:+3 Lots@7920.70
+---Why 3 Lots?...Because 7920.20 is Below--8056.75----8006.75--7956.75.
+---It Will Be Sold Only At 7920.20+50==7970.20
+
+(*)11:35:7898.90
+---Action:+1 Lot@7898.90
+---Why 1 Lot?...Because It Is Below New Level 7906.
+---It Will Be Sold Only At 7898.90+50==7948.90
+
+(*)13:16:7853
+---Action:+1 Lot@7853
+---Why 1 Lot?...Because It Is Below New Level 7856.
+---It Will Be Sold Only At 7853+50==7903.
+
+(*)14:03:7803
+---Action:+1 Lot@7803.
+---Why 1 Lot?...Because It Is Below New Level 7806.
+---It Will Be Sold Only At 7803+50==7853.
+
+(*)14:28
+---Action:+1 Lot@7751.80.
+---Why 1 Lot?...Becuause It Is Below New Level 7756.
+---It Will Be Sold Only At 7751.80+50==7801.80.
+
+(*)15:10:7804.90
+---Action:Sell 1 Lot Bought At 7801.80 On 20150901 At 15:10 
+---Why?...Because 7751.80+50===7801.80
+
+DTS FOR 20150902:
+
+(*)10:28:7853
+---Action: Sell 1 Lot Bought At 7803 On 20150901 At 14:03.
+
+(*)11:08:7806.20
+---Action:+1 Lot@7806.20
+---Why 1 Lot?...Because It Is Again Below 7806.75
+---It Will Be Sold Only At 7806.20+50==7856.20
+
+(*)14:42:7755.10
+---Action:+1 Lot@7755.10
+---Why 1 Lot?...Because Again It Is Below Our New Buying Level 7756.75
+---It Will Be Sold Only At 7755.10+50==7805.10
+
+ 
+
+
+
+
+
+
+
+
+
+
