@@ -50,5 +50,13 @@ Example 2: Multiple Views and Controllers
 		});
 	- To get rid of curly brackets, use ng-cloak
 
-Example 2: Angular Directives
-	- 
+Example 3: Angular Directives
+	- ng-if="$index > 0" conditional while iterating
+	- Other things: $first, $last, $even and $odd
+	- Two way data binding -- allow user to change your data model
+	- ng-include -- allows to include HTML fragments in our code (which can contain ng directives within them)
+	- These are also called partials
+	- ng-switch is like switch case based on some condition
+
+
+Example 3: Events
