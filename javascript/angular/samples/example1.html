@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <title>My Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="example1.js"></script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <div ng-controller="helloworld">
+		<h2>{{ message }}</h2>
+		<input type="text" ng-model="first" /><br/>
+		<input type="text" ng-model="second" /><br/><br/>
+		<span>Total Sum: {{ result }}</span><br/><br/>
+		<button ng-click="updateValue()">Lets go!</button><br/><br/>
+
+		Your first value is {{ first }}
+    </div>
+  </body>
+</html>
