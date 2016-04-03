@@ -8,4 +8,6 @@ app.controller('helloworld', function($scope){
 	$scope.updateValue = function(){
 		$scope.result = $scope.first + $scope.second;
 	}
+
+	$scope.names = ['Sidharth', 'Khyati', 'Dilip', 'Jayshree', 'Manan', 'Vyoma'];
 });

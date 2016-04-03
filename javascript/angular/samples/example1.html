@@ -14,7 +14,12 @@
 		<span>Total Sum: {{ result }}</span><br/><br/>
 		<button ng-click="updateValue()">Lets go!</button><br/><br/>
 
-		Your first value is {{ first }}
+		Your first value is {{ first }} <br/>
+
+		List of Members in my Family (Example of ng-repeat):
+		<ul>
+			<li ng-repeat="name in names">{{ name }}</li>
+		</ul>
     </div>
   </body>
 </html>
