@@ -37,4 +37,18 @@ Example 1: Basic Angular
 	- ng-repeat -- used to iterate through data 
 
 Example 2: Multiple Views and Controllers
+	- <h4 ng-controller="RandNumberGenerator1Ctrl">Luck Number 		1: {{ randomNum }} </h4>
+		<h4 ng-controller="RandNumberGenerator2Ctrl">Luck Number 2: {{ randomNum }} </h4>
+  	- var app = angular.module('app', []);
+
+		app.controller('RandNumberGenerator1Ctrl', function($scope){
+			$scope.randomNum = Math.floor((Math.random() * 10) + 1);
+		});
+
+		app.controller('RandNumberGenerator2Ctrl', function($scope){
+			$scope.randomNum = Math.floor((Math.random() * 10) + 1);
+		});
+	- To get rid of curly brackets, use ng-cloak
+
+Example 2: Angular Directives
 	- 
