@@ -1,0 +1,69 @@
+Example 1: Basic Angular
+	- This video is based on: https://www.youtube.com/watch?v=OPxeCiy0RdY tutorial
+	- Module == Components. (Official Document: You can think of a module as a container for the different parts of your app – controllers, services, filters, directives, etc.)
+	- You can package code as reusable modules.
+	- Directives are extended HTML attributes that extend it, prefixed with ng-
+	- Scope == Javascript Objects that Angular JS Uses == DATA
+	- Expression are linked to data/scope --> Pages Updates when data changes
+	- Data Binding  == any time data changes it updates the UI
+	- Services == Ajax etc... 
+
+	Example 1:
+	- exam1.js
+		var app1 = angular.module('app1', []); <- Module associate AngularJS application with part of an HTML document. [] -- this is a bunch of modules that need to operate properly
+		- app1.controller('ctrl1', function($scope){
+			$scope.first = 1;
+			$scope.second = 1;
+
+			$.scope.updateValue = function(){
+				$scope.calculation = $scope.first + ' + ' $scope.second " = " +  (+$scope.first + +$scipe.second)
+			}
+		});
+	- ng-app="app1" in html tag <- this directive know where to begin compiling the code
+	- ng-init <- this will initialize application data 
+		- ng-init="person = {fName: 'Sidharth', lName: 'Shah};"
+	- <div ng-controller="ctrl1"></div> <- This is going to be view
+	- dependency injection ?? 
+	- Data Binding to Model and Controllers via Scope
+		- <input type="text" ng-mode="first" />
+		- <input type="text" ng-mode="second" />
+	- Binding Click Events 
+		- <button ng-click="updateValue()">Sum</button>
+	- Expression
+		- {{ calculation }}
+	- Alternative way to bind data is using data-ng-bind 
+	- Expression can also be used to build string 
+		- {{ person.fName + ' ' + person.lName}} you've entered some data -- in this case person information came from data in ng-init section
+	- ng-repeat -- used to iterate through data 
+
+Example 2: Multiple Views and Controllers
+	- <h4 ng-controller="RandNumberGenerator1Ctrl">Luck Number 		1: {{ randomNum }} </h4>
+		<h4 ng-controller="RandNumberGenerator2Ctrl">Luck Number 2: {{ randomNum }} </h4>
+  	- var app = angular.module('app', []);
+
+		app.controller('RandNumberGenerator1Ctrl', function($scope){
+			$scope.randomNum = Math.floor((Math.random() * 10) + 1);
+		});
+
+		app.controller('RandNumberGenerator2Ctrl', function($scope){
+			$scope.randomNum = Math.floor((Math.random() * 10) + 1);
+		});
+	- To get rid of curly brackets, use ng-cloak
+
+Example 3: Angular Directives
+	- ng-if="$index > 0" conditional while iterating
+	- Other things: $first, $last, $even and $odd
+	- Two way data binding -- allow user to change your data model
+	- ng-include -- allows to include HTML fragments in our code (which can contain ng directives within them)
+	- These are also called partials
+	- ng-switch is like switch case based on some condition
+
+
+Example 4: Events
+	- There are events that can be capture (think $("#something").click(function(){}))
+		- ng-click
+		- ng-blur
+		- ng-dbclick etc...
+	- ng-disabled -- allows you to enable or disable
+	- ng-hide/ng-show -- show or hide some element based on certain condition
+	- ng-class -- change an element's class and effectively CSS

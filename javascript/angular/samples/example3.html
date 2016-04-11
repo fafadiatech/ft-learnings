@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <title>My Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="example3.js"></script>
+  </head>
+  <body>
+  <div ng-controller="GroceryCtrl">
+  	<h3>Total Items in Groceries {{groceries.length}}</h3>
+	
+	Change First item in you grocery list
+	<input type="text" ng-model="groceries[0].name" /><br/>
+
+  	Complete List
+  	<ul>
+  		<li ng-repeat="item in groceries">{{ item.name }}</li>
+  	</ul>
+
+  	Skiping using ng-if
+  	<ul>
+  		<li ng-repeat="item in groceries" ng-if="$index > 0">{{ item.name }}</li>
+  	</ul>
+
+  	Load HTML Fragment/Partial using ng-include <br/>
+	<div ng-include="'ul.html'" />
+
+  	Load HTML Fragment/Partial using checkbox <br/>
+	<input type="checkbox" ng-model="showList" />
+	Show Data <br/>
+	<ng-include src="getList()"></ng-include>
+  </div>
+  </body>
+</html>
