@@ -21,6 +21,30 @@ class WebPage(url: String, domain: String){
     }
 }
 
+data class Coder(var name: String, var alias: String, var languagesKnown: List<String>){
+    fun totalLanguagesKnown(): Int{
+        return this.languagesKnown.size
+    }
+}
+
+// By default Kotlin class are closed i.e. sealed
+// `open` keyword is used to make a class open for inheritance
+// Properties for class have to defined using
+//  1. val - read only property
+//  2. var - read/write property
+
+open class Person(var name: String, var age: Int){
+    fun sayMyName(): String {
+        return "Mera nam ${this.name} hai"
+    }
+}
+
+open class Employee(name: String, age: Int, var employeeId: String, var worksAt: String) : Person(name, age){
+    fun workIntroduction(): String {
+        return "Hello everyone! My name is ${this.name}, I work at ${this.worksAt}"
+    }
+}
+
 fun main(args: Array<String>) {
     println("Hello World")
 
@@ -77,4 +101,11 @@ fun main(args: Array<String>) {
     // Instantiate a class
     val wp = WebPage("http://fafadiatech.com/faqs", "fafadiatech.com")
     println(wp.sayMyDomain())
+
+    var sidharth = Coder("Sidharth Shah", "black_mamba", listOf("Python", "Kotlin", "Golang"))
+    println("Sidharth apparently knows ${sidharth.totalLanguagesKnown()} languages")
+    println("More details ${sidharth}")
+
+    val raviPal = Employee("Ravi Pal", 29, "FT1234", "Fafadia Tech")
+    println(raviPal.workIntroduction())
 }
