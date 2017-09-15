@@ -11,6 +11,15 @@ fun isEven(x: Int): Boolean{
     return false
 }
 
+// Example of class
+class WebPage(url: String, domain: String){
+    val url = url
+    val domain = domain
+
+    fun sayMyDomain(): String {
+        return "My Domain is: ${this.domain}, know more about me at ${this.url}"
+    }
+}
 
 fun main(args: Array<String>) {
     println("Hello World")
@@ -46,16 +55,26 @@ fun main(args: Array<String>) {
     // Example of iteration, listOf returns read-only list of elements
     val family = listOf("Manan", "Sidharth", "Khyati", "Vyoma", "Jayshree", "Dilip")
     for(member in family){
-        println("In da familiy" + member)
+        println("In da familiy " + member)
     }
 
-    //Ranges in kotlin
+    //Ranges in kotlin along with string templates
     for(i in 1..20 step 3){
-        println("I've repeated myself " + i.toString() + " time!")
+        println("I've repeated myself ${i}  time!")
     }
 
     // Functional styles in Kotlin
     family.sortedBy{ it }
           .map{ it.toUpperCase() }
           .forEach{ println(it) }
+
+    // Maps are similar to Python dictionary
+    var favColors : Map<String, String> = mapOf("sidharth" to "blue", "manan" to "black")
+    for((person, color) in favColors){
+        println(person + " -> " + color)
+    }
+
+    // Instantiate a class
+    val wp = WebPage("http://fafadiatech.com/faqs", "fafadiatech.com")
+    println(wp.sayMyDomain())
 }
