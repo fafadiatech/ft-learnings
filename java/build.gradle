@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+jar {
+    baseName = 'helloworld'
+    version =  '0.1.0'
+    manifest {
+        attributes 'Main-Class': 'hello.HelloWorld'
+    }
+}
