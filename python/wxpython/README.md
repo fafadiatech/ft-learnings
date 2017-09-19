@@ -1,0 +1,1 @@
+There are some issue with virtualenv on Mac. Solution is pretty simple use `pythonw` instead of `python` without any virtualenv.
