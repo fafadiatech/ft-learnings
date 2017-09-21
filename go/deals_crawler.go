@@ -7,7 +7,8 @@ import (
 )
 
 type Page struct {
-	url string
+	url       string
+	file_name string
 }
 
 type Crawler struct {
@@ -36,6 +37,13 @@ func (c *Crawler) fetch_page(current_page Page) {
 	fmt.Print("Fetched Bytes:")
 	fmt.Print(len(bytes))
 	fmt.Print("\n")
+
+	save_err := ioutil.WriteFile(current_page.file_name, bytes, 0644)
+
+	if save_err != nil {
+		fmt.Println("Issues saving file:", current_page.file_name)
+	}
+
 	done <- true
 }
 
@@ -49,12 +57,12 @@ func (c *Crawler) crawl() {
 func main() {
 	deals_crawler := NewCrawler(
 		[]Page{
-			Page{"https://www.snapdeal.com/offers/deal-of-the-day"},
-			Page{"https://www.flipkart.com/"},
-			Page{"http://www.amazon.in/gp/goldbox/"},
-			Page{"http://www.jabong.com/deals/deal-of-the-day/"},
-			Page{"http://www.myntra.com/deal-of-the-day"},
-			Page{"https://www.nykaa.com/offers.html"},
+			Page{"https://www.snapdeal.com/offers/deal-of-the-day", "sd"},
+			Page{"https://www.flipkart.com/", "fk"},
+			Page{"http://www.amazon.in/gp/goldbox/", "az"},
+			Page{"http://www.jabong.com/deals/deal-of-the-day/", "jb"},
+			Page{"http://www.myntra.com/deal-of-the-day", "my"},
+			Page{"https://www.nykaa.com/offers.html", "ny"},
 		},
 	)
 	deals_crawler.crawl()
