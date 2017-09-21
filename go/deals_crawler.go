@@ -7,8 +7,8 @@ import (
 )
 
 type Page struct {
-	url       string
-	file_name string
+	url      string
+	fileName string
 }
 
 type Crawler struct {
@@ -23,14 +23,14 @@ func NewCrawler(seedlist []Page) *Crawler {
 	return &c
 }
 
-func (c *Crawler) fetch_page(current_page Page) {
-	msg := fmt.Sprintf("Fetching page:%s", current_page.url)
+func (c *Crawler) fetchPage(currentPage Page) {
+	msg := fmt.Sprintf("Fetching page:%s", currentPage.url)
 	fmt.Println(msg)
 
-	resp, err := http.Get(current_page.url)
+	resp, err := http.Get(currentPage.url)
 
 	if err != nil {
-		fmt.Println("Error fetching", current_page)
+		fmt.Println("Error fetching", currentPage)
 	}
 
 	bytes, _ := ioutil.ReadAll(resp.Body)
@@ -38,10 +38,10 @@ func (c *Crawler) fetch_page(current_page Page) {
 	fmt.Print(len(bytes))
 	fmt.Print("\n")
 
-	save_err := ioutil.WriteFile(current_page.file_name, bytes, 0644)
+	saveError := ioutil.WriteFile(currentPage.fileName, bytes, 0644)
 
-	if save_err != nil {
-		fmt.Println("Issues saving file:", current_page.file_name)
+	if saveError != nil {
+		fmt.Println("Issues saving file:", currentPage.fileName)
 	}
 
 	done <- true
@@ -49,13 +49,13 @@ func (c *Crawler) fetch_page(current_page Page) {
 
 func (c *Crawler) crawl() {
 	for _, page := range c.frontier {
-		go c.fetch_page(page)
+		go c.fetchPage(page)
 	}
 
 }
 
 func main() {
-	deals_crawler := NewCrawler(
+	dealsCrawler := NewCrawler(
 		[]Page{
 			Page{"https://www.snapdeal.com/offers/deal-of-the-day", "sd"},
 			Page{"https://www.flipkart.com/", "fk"},
@@ -65,8 +65,8 @@ func main() {
 			Page{"https://www.nykaa.com/offers.html", "ny"},
 		},
 	)
-	deals_crawler.crawl()
-	for _, i := range deals_crawler.frontier {
+	dealsCrawler.crawl()
+	for _, i := range dealsCrawler.frontier {
 		<-done
 		msg := fmt.Sprintf("Done Crawling:%s", i)
 		fmt.Println(msg)
