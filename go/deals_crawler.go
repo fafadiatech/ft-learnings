@@ -22,27 +22,26 @@ func NewCrawler(seedlist []Page) *Crawler {
 	return &c
 }
 
-func (c *Crawler) fetch_page(current_page *Page) {
+func (c *Crawler) fetch_page(current_page Page) {
 	msg := fmt.Sprintf("Fetching page:%s", current_page.url)
 	fmt.Println(msg)
 
 	resp, err := http.Get(current_page.url)
 
 	if err != nil {
-		fmt.Println("Error fetching")
+		fmt.Println("Error fetching", current_page)
 	}
 
 	bytes, _ := ioutil.ReadAll(resp.Body)
 	fmt.Print("Fetched Bytes:")
 	fmt.Print(len(bytes))
-	fmt.Println("")
-
+	fmt.Print("\n")
 	done <- true
 }
 
 func (c *Crawler) crawl() {
 	for _, page := range c.frontier {
-		go c.fetch_page(&page)
+		go c.fetch_page(page)
 	}
 
 }
