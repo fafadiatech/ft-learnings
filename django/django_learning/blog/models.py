@@ -12,5 +12,5 @@ class Blog(models.Model):
     tags = TaggableManager()
 
     def __unicode__(self):
-        return self.tite
+        return self.title
 
