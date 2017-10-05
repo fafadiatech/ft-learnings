@@ -1,4 +1,6 @@
 {% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
+
 {% load static %}
 <!doctype html>
 <html>
@@ -7,5 +9,11 @@
     </head>
     <body>
         {% render_table entries %}
+
+        <hr/>
+        <form>
+            {{ form|crispy}}
+            <input type="submit" name="Done"/>
+        </form>
     </body>
 </html>

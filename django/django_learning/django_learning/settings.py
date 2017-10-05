@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_tables2',
+    'django_filters',
+    'crispy_forms',
     'taggit',
     'reversion',
     'blog'
