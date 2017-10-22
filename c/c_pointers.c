@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+// This will increment value pointed by prt by adding offset
+void increment(int *ptr, int offset){
+  *ptr += offset;
+}
+
 int main(){
   int val;
   
@@ -14,6 +19,8 @@ int main(){
   
   // Dereferencing using ** operator
   printf("Value {before change} from pointer is:%d\n", *ptr);
-  *ptr = 20;
+  increment(ptr, 14);
   printf("Value {after change} from pointer is:%d\n", *ptr);
+  
+  
 }
