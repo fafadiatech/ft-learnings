@@ -133,7 +133,7 @@ func main() {
 	iphone_7 := Product{"iPhone 7", "12345", 1}
 	fmt.Println("You will be winning this product, end of competition:", iphone_7.name)
 
-	// When referencing pointers to struct to make systen cool, following notation is used
+	// When referencing pointers to struct to make reading cool, following notation is used
 	// Note how de-referencing of structure doesn't require * in fron of iphone_7_pointer.sku line
 	iphone_7_pointer := &iphone_7
 	fmt.Println("SKU of the project that you will be willing will be:", iphone_7_pointer.sku)
