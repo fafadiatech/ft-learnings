@@ -68,7 +68,6 @@ def download_bse_bhavcopy(for_date):
     year = for_date_parsed.strftime("%y")
     file_name = f"EQ{day}{month}{year}_CSV.ZIP"
     url = f"http://www.bseindia.com/download/BhavCopy/Equity/{file_name}"
-    print(url)
     file_path = os.path.join(download_path, "bse", file_name)
     try:
         download_and_unzip(url, file_path)
