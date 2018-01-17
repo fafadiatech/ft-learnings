@@ -84,10 +84,10 @@ def download_bse_bhavcopy(for_date):
     default=yesterday(),
     help="Date for which to download bhavcopy DD/MM/YYYY format")
 @click.option(
-    "--for_days",
+    "--for_past_days",
     default=1,
-    help="Number of calendar days for which we need to fetch data")
-def main(exchange, for_date, for_days):
+    help="Number of calendar days for which we need to fetch data {E.g. past 15 days from today}")
+def main(exchange, for_date, for_past_days):
     """
     download_bhavcopy is utility that will download daily bhav copies
     from NSE and BSE
@@ -95,13 +95,13 @@ def main(exchange, for_date, for_days):
     Examples:
     python download_bhavcopy.py bse --for_date 06/12/2017
 
-    python download_bhavcopy.py bse --for_days 15
+    python download_bhavcopy.py bse --for_past_days 15
     """
     click.echo(f"downloading bhavcopy {exchange}")
 
     # We need to fetch data for past X days
-    if for_days != 1:
-        for i in range(for_days):
+    if for_past_days != 1:
+        for i in range(for_past_days):
             ts = datetime.now() - timedelta(days=i+1)
             ts = ts.strftime("%d/%m/%Y")
             if exchange == "nse":
@@ -115,7 +115,6 @@ def main(exchange, for_date, for_days):
             download_bse_bhavcopy(for_date)
 
 if __name__ == "__main__":
-    print(download_path)
     # Make sure we have downloads directory
     Path(download_path).mkdir(parents=True, exist_ok=True)
 
