@@ -62,3 +62,64 @@ print(genderDisclosure!)
 if let correctValue = genderDisclosure {
     print("Yo \(luckyPerson), I see you're \(correctValue)")
 }
+
+// This is how arrays are defined, similar to Python
+let laFamilia = ["Dilip", "Jayshree", "Sidharth", "Khyati", "Manan", "Vyoma"]
+
+// This is how arrays are defined which you can append to, above array
+// is constant
+var laFavColors = Array<String>()
+laFavColors.append("Blue")
+laFavColors.append("Yello")
+laFavColors.append("Red")
+laFavColors.append("Green")
+laFavColors.append("White")
+
+// This is how you iterate over arrays {and possibly over other collections aswell}
+for current in laFavColors{
+    print("Someone from your family loves \(current) color")
+}
+
+// Set is another datastructure, its similar to tuples in Python
+// Set cannot have duplicates, however unlike Python tuples you can
+// insert elements to it
+var laFavFoods = Set<String>()
+laFavFoods.insert("Dosa")
+laFavFoods.insert("Chole")
+laFavFoods.insert("Undhiya")
+laFavFoods.insert("Chole")
+print("Family as a whole love \(laFavFoods.count) items")
+
+// Dictionaries in swift compared to python have a wiered syntax
+let laFavNums = ["Dilip": 7, "Jayshree": 8];
+print("Dilip's Fav number is \(laFavNums["Dilip"]!)")
+
+// This is how classes are define
+// Note the init function is initializer, withSomeState is a "tag"
+// think of it as helper text that gives programmer hints to what those
+// value could be
+class SomeBaseClass{
+    var someState: String
+    
+    init(withSomeState givenState:String){
+        self.someState = givenState
+    }
+    
+    // This is how you define a method that doesnt take any argument but returns you
+    //
+    func greet() -> String{
+        return "Hello \(self.someState)"
+    }
+}
+
+// This is how you extend some class
+class SomeExtendedClass : SomeBaseClass{
+    func specialFoo(){
+        print("Yo! this foo is so special its only avilable in SomeExtendedClass")
+    }
+}
+
+// This is how classes are instansiated
+let myInstance = SomeExtendedClass(withSomeState: "Yo Yo!")
+myInstance.specialFoo()
+print(myInstance.greet())
