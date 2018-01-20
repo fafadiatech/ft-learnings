@@ -14,7 +14,7 @@ let welcomeMessage = "Hello, playground"
 print(welcomeMessage)
 
 // Following is an example of string formatting, this is equivalent to
-// f-strings in Python 3+
+// f-strings in Python 3+. Technically this is called string interpolation
 let luckyPerson: String = "Sidharth Shah"
 let customizedWelcomeMessage = "Hello \(luckyPerson)"
 print(customizedWelcomeMessage)
@@ -123,3 +123,23 @@ class SomeExtendedClass : SomeBaseClass{
 let myInstance = SomeExtendedClass(withSomeState: "Yo Yo!")
 myInstance.specialFoo()
 print(myInstance.greet())
+
+// This is show range is specified, using "...", this is similar
+// to how varadic functions are defined in golang
+for currentIndex in 1...5{
+    print("We've iterated \(currentIndex) times already")
+}
+
+// This is how a function is defined in Swift
+func addOne(paramOne: Int) -> Int {
+    return paramOne + 1
+}
+addOne(paramOne: 10)
+
+// This is how variadic functions are defined
+func greetEveryOne<N> (attendees: N...){
+    for currentPerson in attendees{
+        print("Aloha, \(currentPerson)")
+    }
+}
+greetEveryOne(attendees: "Manan", "Sidharth")
