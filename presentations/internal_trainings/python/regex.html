@@ -28,21 +28,170 @@ class: center, middle
 # Agenda
 
 1. What are RegEx?
-2. 3 Motivating Examples
-3. RegEx in Python
-4. Simple RegEx {Part 1}
-5. Simple RegEx {Part 2}
-6. Complex RegEx
-7. Practice Examples
-8. References
+1. 3 Motivating Examples
+1. RegEx Grammar {Part 1}
+1. RegEx Grammar {Part 2}
+1. RegEx in Python
+1. References
 
 ---
 
 # What are RegEx?
+
+## RegEx: Are short form of "Regular Expressions"
+
+>> A regular expression, regex or regexp[1] (sometimes called a rational expression)[2][3] is, in theoretical computer science and formal language theory, a sequence of characters that define a search pattern. Usually this pattern is then used by string searching algorithms for "find" or "find and replace" operations on strings.
+
+---
+
+# 3 Motivating Example
+
+## Places where I've used RegEx extensively
+
+### 1. Validation Rules {E.g. Emails, Phone, Addresses}
+### 2. Scraping {E.g. Extracting Prices, Text Snippets etc}
+### 3. Translation {E.g. Replacing a piece of text with another}
+### 4. Parsing Logs {E.g. Parsing Apache and Nginx logs}
+
+---
+
+# RegEx Grammar {Part 1}
+
+RegEx has a grammar, one tool that I have found useful is [RegEx101](https://regex101.com/).
+This tool allows us to quickly iterate over our regex and see how it works.
+
+Few things to keep in mind:
+
+1. There are **more than one way** to write same regex
+1. RegEx are **greedy** by default {That means it tries to extract as much as possible until it conforms to a pattern even when a smaller part would have been syntactically sufficient.}
+1. When writing RegEx try to make sure we've tested both Positive **and** Negative test cases
+1. RegEx are **language neutral** i.e. it works **ALL** languages {including JS, PHP etc}
+
+Bonus: [RegEx Cheat Sheet](http://www.rexegg.com/regex-quickstart.html) comes in handy, don't try and cram stuff into your Memory
+---
+
+# RegEx Grammar {Part 1}
+
+### Characters
+
+1. **`\d`**: Digits {0-9}
+1. **`\w`**: Word character this includes Alphabets {Case Insensitive}, Digits and Underscore
+1. **`\s`**: White spaces {including tabs, new line and character returns}
+
+Note: Capital of above character match inverses. E.g. '\D' will match anything that is not a digit
+
+### Quantifiers
+
+1. **`.`**: Matches occurance of any character
+1. **`?`**: Optional Match
+1. **`+`**: Match atleast one
+1. **`{x}`**: Matches occurances of expression **Exactly x** number of times
+1. **`{x, y}`**: Matches occurances of expression **Range x, y** number of times
+---
+
+# RegEx Grammar {Part 1} Examples
+
+Some examples:
+
+1. Match names Fafadia Group and Fafadia Tech
+1. Match Indian Mobile Numbers
+1. Match India Mobile Numbers including Land Line Numbers
+1. Match all tags containing tags {E.g. a, p, h1, h2, h3 etc}
+
+---
+
+# RegEx Grammar {Part 2}
+
+### Logic
+
+1. **`|`**: Matches sub-expressions within the group
+1. **`(...)`**: Encapsulate sub-expressions in a group
+1. **`^`**: If used at starting of an expression it means "at the start"
+1. **`^`**: If used in a group it negates
+
+### Class Characters
+
+1. **`[]`**: Matches any of the character
+1. **`[a-z]`**: Ranges of characters between a and z
+
+---
+
+# RegEx Grammar {Part 2} Examples
+
+Some examples:
+
+1. Match "Peach, Punch and Pinch"
+1. Match IP Addresses
+1. Match Email Addresses
+1. Match Domains
+
+---
+
+# RegEx in Python {findall}
+
 ```python
-def hello():
-        return "world"
+import re
+
+text_snippet = "there was a PEACH who PINCH, in return punch were flying around"
+
+# re.compile compiles regex into an objects
+# this makes it easier to work with regex
+# re.IGNORECASE is a flag, you can have multiple such flags
+pch_regex = re.compile(r"p.{1,3}ch", re.IGNORECASE)
+
+for current_match in pch_regex.findall(text_snippet):
+    print current_match
 ```
+---
+
+# RegEx in Python {search}
+
+```python
+import re
+
+def validate_email(current_email):
+    """
+    check if email is valid
+    """
+    email_re = re.compile(r"\w+\@\w+\.(com|co\.in)", re.IGNORECASE)
+    # .search() method is used to TEST if regex matches at all
+    return email_re.search(current_email) is not None
+
+print validate_email("iamsidd@gmail.com")
+print validate_email("iamsidd@.co")
+```
+---
+
+# RegEx in Python {finditer}
+
+```python
+import re
+
+text_snippet = "there was a PEACH who PINCH, in return punch were flying around"
+pch_regex = re.compile(r"p.{1,3}ch", re.IGNORECASE)
+
+for current_match in pch_regex.finditer(text_snippet):
+    print "Starts at:%d, Ends at:%d" % (current_match.start(), current_match.end())
+```
+---
+
+# RegEx in Python {re.sub}
+
+```python
+import re
+
+text_snippet = "there was a PEACH who PINCH, in return punch were flying around"
+pch_regex = re.compile(r"p.{1,3}ch", re.IGNORECASE)
+text_snippet_translated = re.sub(pch_regex, "_", text_snippet)
+print text_snippet_translated
+```
+---
+
+# References
+
+1. [Using Regular Expressions in Python](https://regexone.com/references/python)
+1. [Python 2: RegEx HOWTO](https://docs.python.org/2/howto/regex.html)
+1. [RegEx Golf](https://alf.nu/RegexGolf)
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
